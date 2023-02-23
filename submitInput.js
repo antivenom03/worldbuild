@@ -1,3 +1,5 @@
+if (typeof State === 'undefined') return;
+
 const State = {
   passage: 'Start', // Set the initial passage
   userData: {} // Store user data here
