@@ -1,3 +1,9 @@
+const State = {
+  passage: 'Start', // Set the initial passage
+  userData: {} // Store user data here
+};
+
+
 function submitInput() {
   const userInput = document.getElementById("user-input").value;
   const currentPassage = State.passage;
