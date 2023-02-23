@@ -6,19 +6,15 @@ on:
       - main
 
 jobs:
-  push:
+  update-input:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Update input.txt
-        run: |
-          echo "${{ secrets.ACCESS_TOKEN }}" | base64 --decode > token.txt
-          echo "${{ github.event.inputs.user_input }}" >> input.txt
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add input.txt
-          git commit -m "Add user input"
-          git remote add origin-with-token "https://github.com/Antivenom03/wordbuild.git"
-          git push --quiet origin-with-token main
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+      - name: Update input
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: node updateInput.js
