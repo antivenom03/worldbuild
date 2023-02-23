@@ -6,7 +6,7 @@ const State = {
 
 function submitInput() {
   const userInput = document.getElementById("user-input").value;
-  const currentPassage = State.passage;
+  const currentPassage = window.State.variables.passage;
 
   const url = 'https://api.github.com/repos/Antivenom03/wordbuild/contents/input.txt';
   const token = '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';
