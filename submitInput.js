@@ -1,18 +1,10 @@
-// Define the State object
-const State = {
-  passage: 'Start', // Set the initial passage
-  userData: {} // Store user data here
-};
-
 function submitInput() {
   const userInput = document.getElementById("user-input").value;
   const currentPassage = State.passage;
 
-  const url = 'https://api.github.com/repos/Antivenom03/wordbuild/contents/input.txt';
-  const token = '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';
-
+  const url = 'https://api.github.com/repos/Antivenom03/worldbuild/contents/input.html';
   const headers = new Headers();
-  headers.append('Authorization', `Bearer ${token}`);
+  headers.append('Authorization', `Bearer ${{ secrets.ACCESS_TOKEN }}`);
 
   // Step 1: Retrieve the current content of the file
   fetch(url, {
@@ -40,12 +32,6 @@ function submitInput() {
     });
   })
   .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    alert('Your input has been submitted!');
-  })
-  .catch(error => {
-    console.error(error);
-    alert('There was an error submitting your input.');
-  });
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
 }
