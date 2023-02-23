@@ -17,4 +17,4 @@ jobs:
       - name: Update input
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: node updateInput.js
+        run: node submitInput.js
