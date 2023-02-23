@@ -19,7 +19,7 @@ function submitInput() {
     headers: headers
   })
   .then(response => response.json())
-  .then(data=> {
+  .then(data => {
     const currentContent = atob(data.content);
 
     // Step 2: Modify the current content with the new user input
@@ -40,6 +40,12 @@ function submitInput() {
     });
   })
   .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
+  .then(data => {
+    console.log(data);
+    alert('Your input has been submitted!');
+  })
+  .catch(error => {
+    console.error(error);
+    alert('There was an error submitting your input.');
+  });
 }
