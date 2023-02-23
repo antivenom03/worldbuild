@@ -13,24 +13,24 @@ function submitInput() {
     headers: headers
   })
   .then(response => response.json())
-  .then(userdata=> {
-    const currentContent = atob(userdata.content);
+  .then(userData=> {
+    const currentContent = atob(userData.content);
 
     // Step 2: Modify the current content with the new user input
     const newContent = `${currentContent}\n${currentPassage}: ${userInput}`;
 
     // Step 3: Write the modified content back to the file
-    const userdata = {
+    const newData = {
       message: `Add user input from ${currentPassage}`,
       content: btoa(newContent),
-      sha: userdata.sha,
+      sha: userData.sha,
       branch: 'main'
     };
 
     return fetch(url, {
       method: 'PUT',
       headers: headers,
-      body: JSON.stringify(userdata)
+      body: JSON.stringify(newData)
     });
   })
   .then(response => response.json())
