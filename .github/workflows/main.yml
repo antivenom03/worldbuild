@@ -11,12 +11,12 @@ jobs:
     env:
       ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
+      - uses: actions/checkout@v2
       - name: Update input
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: node submitInput.js
+        run: |
+          sed -i '1s/^/\<p\>\<b\>From page:\<\/b\> '${{ github.event.head_commit.message }}'\<\/p\>\<p\>'${{ env.USER_INPUT }}'\<\/p\>/' input.html
+          git add input.html
+          git commit -m "Update input.html with new submission" -a
+          git push
