@@ -9,7 +9,7 @@ function submitInput() {
   const currentPassage = State.passage;
 
   const url = 'https://api.github.com/repos/Antivenom03/wordbuild/contents/input.txt';
-  const token = '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';
+  const token = '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';
 
   const headers = new Headers();
   headers.append('Authorization', `Bearer ${token}`);
